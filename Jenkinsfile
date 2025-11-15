@@ -21,15 +21,6 @@ pipeline {
                         }
                     }
                 }
-
-                stage('Build Java Image') {
-                    steps {
-                        dir('java') {
-                            sh 'docker build -t 9515524259/java_image:latest .'
-                        }
-                    }
-                }
-
                 stage('Build Nginx Image') {
                     steps {
                         dir('nginx') {
@@ -45,7 +36,6 @@ pipeline {
                 sh """
                     echo "$DOCKERHUB_CREDENTIALS_PSW" | docker login -u "$DOCKERHUB_CREDENTIALS_USR" --password-stdin
                     docker push 9515524259/python_image:latest
-                    docker push 9515524259/java_image:latest
                     docker push 9515524259/nginx_image:latest
                 """
             }
