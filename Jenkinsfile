@@ -17,6 +17,8 @@ pipeline {
                 stage('Build Python Image') {
                     steps {
                         dir('python') {
+                            sh 'usermod -aG docker lokesh'
+                            sh 'service restart docker'
                             sh 'docker build -t 9515524259/python_image:latest .'
                         }
                     }
@@ -25,6 +27,8 @@ pipeline {
                 stage('Build Java Image') {
                     steps {
                         dir('java') {
+                            sh 'usermod -aG docker lokesh'
+                            sh 'service restart docker'
                             sh 'docker build -t 9515524259/java_image:latest .'
                         }
                     }
@@ -33,6 +37,8 @@ pipeline {
                 stage('Build Nginx Image') {
                     steps {
                         dir('nginx') {
+                            sh 'usermod -aG docker lokesh'
+                            sh 'service restart docker'
                             sh 'docker build -t 9515524259/nginx_image:latest .'
                         }
                     }
